@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudIntern | Student Internship Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand" id="logoBtn">
+        <span class="brand-icon">✦</span>
+        <span class="brand-name">Stud<span>Intern</span></span>
+      </a>
+
+      <nav class="nav-tabs" aria-label="Main Navigation">
+        <button class="nav-tab active" data-view="explore">Explore</button>
+        <button class="nav-tab" data-view="applications">
+          My Applications <span class="badge" id="appCountBadge">0</span>
+        </button>
+        <button class="nav-tab" data-view="saved">
+          Saved <span class="badge" id="savedCountBadge">0</span>
+        </button>
+      </nav>
+
+      <div class="profile-chip">
+        <div class="avatar">S</div>
+        <span>Student</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+   
+    <section id="exploreView" class="view-section active">
+      <div class="hero-card">
+        <span class="hero-tag">2026 Internship Drive</span>
+        <h1>Find Your Next <span>Tech & Design</span> Internship</h1>
+        <p>Browse verified roles, check stipends, and track your application progress in one place.</p>
+
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by role, company, or skill (e.g., React, Figma, Python)..."
+          />
+          <button id="clearSearchBtn" class="clear-btn hidden" title="Clear search">✕</button>
+        </div>
+
+        <div class="filter-bar">
+          <div class="pills" id="categoryPills">
+            <button class="pill active" data-filter="All">All Roles</button>
+            <button class="pill" data-filter="Remote">Remote</button>
+            <button class="pill" data-filter="Tech">Tech & Dev</button>
+            <button class="pill" data-filter="Design">UI/UX Design</button>
+            <button class="pill" data-filter="Data">Data & AI</button>
+            <button class="pill" data-filter="HighStipend">₹30k+ Stipend</button>
+          </div>
+
+          <select id="sortSelect" aria-label="Sort internships">
+            <option value="newest">Sort: Newest First</option>
+            <option value="stipend">Sort: Highest Stipend</option>
+            <option value="deadline">Sort: Closing Soon</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results-header">
+        <p id="resultsCount">Showing 6 internships</p>
+      </div>
+
+      <div class="internship-grid" id="internshipGrid">
+      </div>
+    </section>
+
+    <section id="applicationsView" class="view-section">
+      <div class="section-top">
+        <div>
+          <h2>Application Tracker</h2>
+          <p class="subtitle">Monitor every stage from submission to offer letter.</p>
+        </div>
+        <button class="btn-outline" id="resetDemoBtn">Reset Demo Data</button>
+      </div>
+
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-box">
+          <span class="stat-label">Total Applied</span>
+          <strong class="stat-val" id="statTotal">0</strong>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Under Review</span>
+          <strong class="stat-val" id="statReview">0</strong>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Interviews</span>
+          <strong class="stat-val" id="statInterview">0</strong>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Offers</span>
+          <strong class="stat-val" id="statOffer">0</strong>
+        </div>
+      </div>
+
+      <div class="tracker-list" id="trackerList">
+      </div>
+    </section>
+
+    <section id="savedView" class="view-section">
+      <div class="section-top">
+        <div>
+          <h2>Saved Opportunities</h2>
+          <p class="subtitle">Roles you bookmarked to apply later.</p>
+        </div>
+      </div>
+
+      <div class="internship-grid" id="savedGrid">
+      </div>
+    </section>
+
+  </main>
+
+  <div class="modal-backdrop" id="detailsModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeDetailsBtn">✕</button>
+      <div id="detailsContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="applyModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeApplyBtn">✕</button>
+      <div class="modal-header">
+        <span class="modal-tag">Quick Application</span>
+        <h3 id="applyRoleTitle">Apply for Role</h3>
+        <p id="applyCompanySub">Company • Location</p>
+      </div>
+
+      <form id="applyForm" class="apply-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="applicantName">Full Name *</label>
+            <input type="text" id="applicantName" required placeholder="e.g., Samriddhi Sharma" />
+          </div>
+          <div class="form-group">
+            <label for="applicantEmail">Email Address *</label>
+            <input type="email" id="applicantEmail" required placeholder="you@college.edu.in" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="applicantCollege">College / University *</label>
+            <input type="text" id="applicantCollege" required placeholder="e.g., UPES Dehradun" />
+          </div>
+          <div class="form-group">
+            <label for="portfolioLink">GitHub / Portfolio URL</label>
+            <input type="url" id="portfolioLink" placeholder="https://github.com/username" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="resumeFile">Upload Resume (PDF) *</label>
+          <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" required />
+        </div>
+
+        <div class="form-group">
+          <label for="coverNote">Why should we pick you? (Cover Note) *</label>
+          <textarea
+            id="coverNote"
+            rows="3"
+            maxlength="300"
+            required
+            placeholder="Briefly mention your relevant projects or skills..."
+          ></textarea>
+          <small class="char-count"><span id="charCount">0</span>/300</small>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-outline" id="cancelApplyBtn">Cancel</button>
+          <button type="submit" class="btn-gradient">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
