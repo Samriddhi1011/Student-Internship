@@ -275,7 +275,6 @@ function renderSaved() {
 }
 
 function renderTracker() {
-  // Update top KPI stats
   document.getElementById("statTotal").textContent = applications.length;
   document.getElementById("statReview").textContent = applications.filter((a) => a.stageIndex === 1).length;
   document.getElementById("statInterview").textContent = applications.filter((a) => a.stageIndex === 2).length;
